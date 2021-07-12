@@ -37,16 +37,16 @@ public class ServletRequestConfigSource extends MapBasedConfigSource {
     private ServletRequest request;
 
     //检查配置属性解析的时候是否需要分隔符解析，默认false
-    private boolean delimiterParsingDisabled = false;
+    private boolean delimiterParsingDisabled;
 
     //默认配置分隔符
-    private char listDelimiter = ',';
+    private char listDelimiter;
 
     public ServletRequestConfigSource(ServletRequest request,boolean delimiterParsingDisabled,char listDelimiter) {
         super(format("ServletRequest[name:%s] init serverName", request.getServerName()), 500);
         this.request = request;
-        this.delimiterParsingDisabled = delimiterParsingDisabled;
-        this.listDelimiter = listDelimiter;
+        this.delimiterParsingDisabled = Objects.isNull(delimiterParsingDisabled) ? false : delimiterParsingDisabled;
+        this.listDelimiter = Objects.isNull(listDelimiter) ? ',' : listDelimiter;
     }
 
     @Override
