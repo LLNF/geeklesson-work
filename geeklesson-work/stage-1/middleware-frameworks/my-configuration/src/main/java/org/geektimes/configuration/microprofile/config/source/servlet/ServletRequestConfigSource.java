@@ -73,6 +73,7 @@ public class ServletRequestConfigSource extends MapBasedConfigSource {
             // 确保所有 value 元素都不包含分隔符
             List<Object> result = new ArrayList<Object>(values.size());
             for(Map.Entry entry:values.entrySet()){
+                //handleDelimiters()进行具体的分隔符操作并返回一个或多个对象
                 Object val = handleDelimiters(entry.getValue());
                 if (val instanceof Collection) {
                     result.addAll((Collection<?>) val);
